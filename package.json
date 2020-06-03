@@ -1,0 +1,23 @@
+{
+  "name": "v-stars",
+  "version": "1.0.0",
+  "description": "vue-based wheels library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EX-EA/v-stars.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "kan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EX-EA/v-stars/issues"
+  },
+  "homepage": "https://github.com/EX-EA/v-stars#readme"
+}

@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/EX-EA/v-stars/issues"
   },
-  "homepage": "https://github.com/EX-EA/v-stars#readme"
+  "homepage": "https://github.com/EX-EA/v-stars#readme",
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
 }

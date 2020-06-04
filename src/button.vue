@@ -1,6 +1,7 @@
 <template>
   <button :class="{[`icon-${iconPosition}`]: true}" class="g-button">
-    <s-icon class="icon" :name="icon"  v-if="icon"></s-icon>
+    <s-icon :name="icon" class="icon" v-if="icon"></s-icon>
+    <s-icon name="loading" class="icon loading" v-if="icon"></s-icon>
     <div class="message">
       <slot></slot>
     </div>
@@ -16,7 +17,7 @@
         type: String,
         default: 'left',
         validator (value) {
-          return value === 'left' || value === 'right';
+          return value === 'left' || value === 'right'
         }
       }
     }
@@ -24,6 +25,15 @@
 </script>
 
 <style lang="scss">
+  @keyframes loading-rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .g-button {
     height: var(--button-height);
     line-height: var(--button-height);
@@ -68,7 +78,9 @@
         order: 2;
       }
     }
+
+    .loading {
+      animation: loading-rotate 2s infinite linear;
+    }
   }
-
-
 </style>

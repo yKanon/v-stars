@@ -1,6 +1,6 @@
 <template>
   <button :class="{[`icon-${iconPosition}`]: true}" class="g-button">
-    <s-icon :name="icon"  v-if="icon"></s-icon>
+    <s-icon class="icon" :name="icon"  v-if="icon"></s-icon>
     <div class="message">
       <slot></slot>
     </div>

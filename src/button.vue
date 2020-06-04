@@ -1,8 +1,6 @@
 <template>
   <button :class="{[`icon-${iconPosition}`]: true}" class="g-button">
-    <svg aria-hidden="true" class="icon" v-if="icon">
-      <use :xlink:href=`#s-${icon}`></use>
-    </svg>
+    <s-icon :name="icon"  v-if="icon"></s-icon>
     <div class="message">
       <slot></slot>
     </div>
@@ -69,14 +67,6 @@
       > .icon {
         order: 2;
       }
-    }
-
-    .icon {
-      width: 1em;
-      height: 1em;
-      vertical-align: -0.15em;
-      fill: currentColor;
-      overflow: hidden;
     }
   }
 

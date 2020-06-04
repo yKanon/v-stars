@@ -1,5 +1,5 @@
 <template>
-  <button :class="{[`icon-${iconDirection}`]: true}" class="g-button">
+  <button :class="{[`icon-${iconPosition}`]: true}" class="g-button">
     <svg aria-hidden="true" class="icon" v-if="icon">
       <use :xlink:href=`#s-${icon}`></use>
     </svg>
@@ -11,7 +11,17 @@
 
 <script>
   export default {
-    props: ['icon', 'iconDirection']
+    // props: ['icon', 'iconDirection']
+    props: {
+      icon: {},
+      iconPosition: {
+        type: String,
+        default: 'left',
+        validator (value) {
+          return value === 'left' || value === 'right';
+        }
+      }
+    }
   }
 </script>
 

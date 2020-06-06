@@ -1,7 +1,7 @@
 <template>
   <button
     :class="{[`icon-${iconPosition}`]: true}"
-    class="g-button"
+    class="s-button"
     @click="$emit('click')"
   >
     <s-icon
@@ -50,7 +50,7 @@
     }
   }
 
-  .g-button {
+  .s-button {
     height: var(--button-height);
     line-height: var(--button-height);
     font-size: var(--font-size);

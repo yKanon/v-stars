@@ -6,7 +6,21 @@
 
 <script>
   export default {
-    name: 'button-group'
+    name: 'button-group',
+    mounted () {
+      const children = this.$el.children
+      for (const node of children) {
+        console.log(node)
+        if (!node) {
+          console.warn(`请给按钮组传入参数~`)
+        }
+
+        const nodeName = node.nodeName.toLowerCase()
+        if (node && nodeName !== 'button') {
+          console.warn(`按钮组期待子节点为button标签，却接收到${nodeName}`)
+        }
+      }
+    }
   }
 </script>
 
@@ -32,7 +46,6 @@
       &:hover {
         z-index: 1;
         position: relative;
-        border-color: red;
       }
     }
   }

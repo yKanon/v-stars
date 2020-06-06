@@ -35,9 +35,25 @@
 </head>
 <body>
 <div id="app">
-  <s-button>按钮</s-button>
-  <s-button icon="setting">按钮</s-button>
-  <s-button icon="setting" icon-position="right">按钮</s-button>
+  <s-button
+    :loading="loading"
+    @click="loading = !loading"
+  >
+    按钮
+  </s-button>
+  <s-button
+    :loading="loading1"
+    @click="loading1 = !loading1"
+    icon="setting"
+  >按钮
+  </s-button>
+  <s-button
+    :loading="loading2"
+    @click="loading2 = !loading2"
+    icon="setting"
+    icon-position="right"
+  >按钮
+  </s-button>
 </div>
 <script src="//at.alicdn.com/t/font_1864003_luf19o1lvka.js"></script>
 <script src="./src/index.js"></script>

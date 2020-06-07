@@ -10,7 +10,6 @@
     mounted () {
       const children = this.$el.children
       for (const node of children) {
-        console.log(node)
         if (!node) {
           console.warn(`请给按钮组传入参数~`)
         }
@@ -47,8 +46,9 @@
       }
 
       &:hover {
-        z-index: 1;
-        position: relative;
+        z-index: 2;
+        /*position: relative;*/
+        /*border-color: greenyellow;*/
       }
     }
   }

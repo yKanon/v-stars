@@ -3,6 +3,9 @@ import Button from './button.vue'
 import Icon from './icon.vue'
 import ButtonGroup from './button-group'
 import chai from 'chai'
+import spies from 'chai-spies'
+
+chai.use(spies)
 
 Vue.component('s-button', Button)
 Vue.component('s-button-group', ButtonGroup)
@@ -42,7 +45,7 @@ const expect = chai.expect
   vm.$destroy()
 }
 {
-  const div  = document.createElement('div')
+  const div = document.createElement('div')
   document.body.appendChild(div)
   const Constructor = Vue.extend(Button)
   const vm = new Constructor({
@@ -57,7 +60,7 @@ const expect = chai.expect
   vm.$el.remove()
 }
 {
-  const div  = document.createElement('div')
+  const div = document.createElement('div')
   document.body.appendChild(div)
   const Constructor = Vue.extend(Button)
   const vm = new Constructor({
@@ -71,18 +74,19 @@ const expect = chai.expect
   vm.$destroy()
   vm.$el.remove()
 }
-// {
-//   const div  = document.createElement('div')
-//   document.body.appendChild(div)
-//   const Constructor = Vue.extend(Button)
-//   const button = new Constructor({
-//     propsData: {
-//       icon: 'setting',
-//       iconPosition: 'right'
-//     }
-//   }).$mount(div)
-//   const svg = button.$el.querySelector('svg')
-//   expect(getComputedStyle(svg).order).to.equal('2')
-//   button.$destroy()
-//   button.$el.remove()
-// }
+{
+  // mock
+  const Constructor = Vue.extend(Button)
+  const vm = new Constructor({
+    propsData: {
+      icon: 'setting',
+      iconPosition: 'right'
+    }
+  }).$mount()
+  const spy = chai.spy(function () {})
+  vm.$on('click', spy)
+  vm.$el.click() // 触发点击
+  expect(spy).to.have.been.called()
+  vm.$destroy()
+  vm.$el.remove()
+}

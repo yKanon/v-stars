@@ -21,8 +21,12 @@
 </template>
 
 <script>
+  import Icon from './icon'
   export default {
     // props: ['icon', 'iconDirection']
+    components: {
+      's-icon': Icon
+    },
     props: {
       icon: {},
       iconPosition: {

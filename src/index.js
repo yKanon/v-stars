@@ -21,72 +21,77 @@ new Vue({
 })
 
 const expect = chai.expect
-{
-  const Constructor = Vue.extend(Button)
-  const vm = new Constructor({
-    propsData: {
-      icon: 'setting'
-    }
-  }).$mount()
-  const use = vm.$el.querySelector('use')
-  expect(use.getAttribute('xlink:href')).to.equal('#s-setting')
-  vm.$destroy()
+try {
+  {
+    const Constructor = Vue.extend(Button)
+    const vm = new Constructor({
+      propsData: {
+        icon: 'setting'
+      }
+    }).$mount()
+    const use = vm.$el.querySelector('use')
+    expect(use.getAttribute('xlink:href')).to.equal('#s-setting')
+    vm.$destroy()
+  }
+  {
+    const Constructor = Vue.extend(Button)
+    const vm = new Constructor({
+      propsData: {
+        icon: 'setting',
+        loading: true
+      }
+    }).$mount()
+    const use = vm.$el.querySelector('use')
+    expect(use.getAttribute('xlink:href')).to.equal('#s-loading')
+    vm.$destroy()
+  }
+  {
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    const Constructor = Vue.extend(Button)
+    const vm = new Constructor({
+      propsData: {
+        icon: 'setting',
+        loading: true
+      }
+    }).$mount(div)
+    const svg = vm.$el.querySelector('svg')
+    expect(getComputedStyle(svg).order).to.equal('1')
+    vm.$destroy()
+    vm.$el.remove()
+  }
+  {
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    const Constructor = Vue.extend(Button)
+    const vm = new Constructor({
+      propsData: {
+        icon: 'setting',
+        iconPosition: 'right'
+      }
+    }).$mount(div)
+    const svg = vm.$el.querySelector('svg')
+    expect(getComputedStyle(svg).order).to.equal('2')
+    vm.$destroy()
+    vm.$el.remove()
+  }
+  {
+    // mock
+    const Constructor = Vue.extend(Button)
+    const vm = new Constructor({
+      propsData: {
+        icon: 'setting',
+        iconPosition: 'right'
+      }
+    }).$mount()
+    const spy = chai.spy(function () {})
+    vm.$on('click', spy)
+    vm.$el.click() // 触发点击
+    expect(spy).to.have.been.called()
+    vm.$destroy()
+    vm.$el.remove()
+  }
+} catch (e) {
+  console.error(e)
 }
-{
-  const Constructor = Vue.extend(Button)
-  const vm = new Constructor({
-    propsData: {
-      icon: 'setting',
-      loading: true
-    }
-  }).$mount()
-  const use = vm.$el.querySelector('use')
-  expect(use.getAttribute('xlink:href')).to.equal('#s-loading')
-  vm.$destroy()
-}
-{
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  const Constructor = Vue.extend(Button)
-  const vm = new Constructor({
-    propsData: {
-      icon: 'setting',
-      loading: true
-    }
-  }).$mount(div)
-  const svg = vm.$el.querySelector('svg')
-  expect(getComputedStyle(svg).order).to.equal('1')
-  vm.$destroy()
-  vm.$el.remove()
-}
-{
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  const Constructor = Vue.extend(Button)
-  const vm = new Constructor({
-    propsData: {
-      icon: 'setting',
-      iconPosition: 'right'
-    }
-  }).$mount(div)
-  const svg = vm.$el.querySelector('svg')
-  expect(getComputedStyle(svg).order).to.equal('2')
-  vm.$destroy()
-  vm.$el.remove()
-}
-{
-  // mock
-  const Constructor = Vue.extend(Button)
-  const vm = new Constructor({
-    propsData: {
-      icon: 'setting',
-      iconPosition: 'right'
-    }
-  }).$mount()
-  const spy = chai.spy(function () {})
-  vm.$on('click', spy)
-  vm.$el.click() // 触发点击
-  expect(spy).to.have.been.called()
-  vm.$destroy()
-  vm.$el.remove()
-}
+

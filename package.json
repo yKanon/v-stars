@@ -1,8 +1,8 @@
 {
   "name": "v-stars-demo",
-  "version": "0.0.1",
+  "version": "0.0.2 ",
   "description": "vue-based wheels library",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "parcel build index.html test/* --no-cache --no-minify && karma start --single-run",
     "test:dev": "parcel watch index.html test/* --no-cache & karma start"

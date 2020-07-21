@@ -4,6 +4,7 @@
   "description": "vue-based wheels library",
   "main": "dist/index.js",
   "scripts": {
+    "start": "parcel index.html --no-cache",
     "test": "parcel build index.html test/* --no-cache --no-minify && karma start --single-run",
     "test:dev": "parcel watch index.html test/* --no-cache & karma start"
   },

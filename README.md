@@ -49,11 +49,6 @@
     }
     ```
 
-4. 引入 svg symbols
-    ```html
-    <script src="//at.alicdn.com/t/font_1864003_ey939m2pkw8.js"></script>
-    ```
-
 ## 文档
 
 ## 提问

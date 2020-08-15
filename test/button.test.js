@@ -6,7 +6,6 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 
 describe('Button', () => {
-
   it('存在.', () => {
     expect(Button).to.exist
   })
@@ -80,6 +79,5 @@ describe('Button', () => {
     vm.$on('click', callback)
     vm.$el.click()
     expect(callback).to.have.been.called
-
   })
 })

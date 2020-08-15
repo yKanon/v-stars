@@ -39,19 +39,7 @@
 <body>
 <div id="app">
   <div class="box">
-    <s-input value="张三"></s-input>
-  </div>
-  <div class="box">
-    <s-input></s-input>
-  </div>
-  <div class="box">
-    <s-input disabled></s-input>
-  </div>
-  <div class="box">
-    <s-input readonly value="王五"></s-input>
-  </div>
-  <div class="box">
-    <s-input error="姓名不能少于两个字"></s-input>
+    <s-input value="张三" @change="inputChange"></s-input>
   </div>
   <!--  <div>-->
   <!--    <s-button-->

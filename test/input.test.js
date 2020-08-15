@@ -73,12 +73,16 @@ describe('Input', () => {
         vm = new Constructor({}).$mount()
         const callback = sinon.fake()
         vm.$on(e, callback)
-
         // 触发 input 的 change 事件
         let event = new Event(e)
         let inputElement = vm.$el.querySelector('input')
+        Object.defineProperty(event, 'target', {
+          value: {
+            value: 'hi'
+          }
+        })
         inputElement.dispatchEvent(event)
-        expect(callback).to.have.been.calledWith(event)
+        expect(callback).to.have.been.calledWith('hi')
       })
     })
   })

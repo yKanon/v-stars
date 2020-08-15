@@ -23,6 +23,7 @@
 <script>
   import Icon from './icon'
   export default {
+    name: "StarsButton",
     // props: ['icon', 'iconDirection']
     components: {
       's-icon': Icon
@@ -44,7 +45,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @keyframes loading-rotate {
     0% {
       transform: rotate(0);

@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'button-group',
+    name: 'StarsButtonGroup',
     mounted () {
       const children = this.$el.children
       for (const node of children) {

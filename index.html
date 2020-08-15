@@ -28,37 +28,57 @@
     body {
       font-size: var(--font-size);
     }
-
-
+  </style>
+  <style>
+    .box {
+      margin: 20px;
+    }
   </style>
 
 </head>
 <body>
 <div id="app">
-  <s-button
-    :loading="loading"
-    @click="loading = !loading"
-  >
-    按钮
-  </s-button>
-  <s-button
-    :loading="loading1"
-    @click="loading1 = !loading1"
-    icon="setting"
-  >按钮
-  </s-button>
-  <s-button
-    :loading="loading2"
-    @click="loading2 = !loading2"
-    icon="setting"
-    icon-position="right"
-  >按钮
-  </s-button>
-  <s-button-group>
-    <s-button icon="previous">上一页</s-button>
-    <s-button>更多</s-button>
-    <s-button icon="next" icon-position="right">下一页</s-button>
-  </s-button-group>
+  <div class="box">
+    <s-input value="张三"></s-input>
+  </div>
+  <div class="box">
+    <s-input></s-input>
+  </div>
+  <div class="box">
+    <s-input disabled></s-input>
+  </div>
+  <div class="box">
+    <s-input readonly value="王五"></s-input>
+  </div>
+  <div class="box">
+    <s-input error="姓名不能少于两个字"></s-input>
+  </div>
+  <!--  <div>-->
+  <!--    <s-button-->
+  <!--      :loading="loading"-->
+  <!--      @click="loading = !loading"-->
+  <!--    >-->
+  <!--      按钮-->
+  <!--    </s-button>-->
+  <!--    <s-button-->
+  <!--      :loading="loading1"-->
+  <!--      @click="loading1 = !loading1"-->
+  <!--      icon="setting"-->
+  <!--    >按钮-->
+  <!--    </s-button>-->
+  <!--    <s-button-->
+  <!--      :loading="loading2"-->
+  <!--      @click="loading2 = !loading2"-->
+  <!--      icon="setting"-->
+  <!--      icon-position="right"-->
+  <!--    >按钮-->
+  <!--    </s-button>-->
+  <!--    <s-button-group>-->
+  <!--      <s-button icon="previous">上一页</s-button>-->
+  <!--      <s-button>更多</s-button>-->
+  <!--      <s-button icon="next" icon-position="right">下一页</s-button>-->
+  <!--    </s-button-group>-->
+  <!--  </div>-->
 </div>
 <script src="./src/index.js"></script>
 </body>

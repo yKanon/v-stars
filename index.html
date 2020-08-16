@@ -28,16 +28,35 @@
     body {
       font-size: var(--font-size);
     }
-  </style>
-  <style>
+
     .box {
       margin: 20px;
     }
-  </style>
 
+  </style>
 </head>
 <body>
 <div id="app">
+  <s-row>
+    <s-col :span="2">1</s-col>
+    <s-col :span="22">2</s-col>
+  </s-row>
+
+  <s-row>
+    <s-col>1</s-col>
+    <s-col>2</s-col>
+    <s-col>2</s-col>
+  </s-row>
+
+  <s-row>
+    <s-col>1</s-col>
+    <s-col>2</s-col>
+    <s-col>2</s-col>
+    <s-col>2</s-col>
+  </s-row>
+  
+
+  <hr />
   <div class="box">
     <s-input v-model="message"></s-input>
     <p>{{message}}</p>

@@ -1,11 +1,10 @@
 <template>
-  <div :class="[span && `col-${span}`, offset && `offset-${offset}`]"
-       :style="{paddingLeft: gutter / 2 + 'px', paddingRight: gutter / 2 + 'px'}"
-       class="col"
+  <div
+    :class="colClass"
+    :style="colStyle"
+    class="col"
   >
-    <div style="border: 1px solid green; height: 100%">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
 
@@ -15,22 +14,32 @@
     props: {
       span: {
         type: [Number, String],
-        validator (value) {
-          return parseInt(value) <= 24
-        }
       },
       offset: {
         type: [Number, String]
       }
     },
-    // mounted () {
-    //   console.log(this.gutter)
-    // },
-    data() {
+    data () {
       return {
-        gutter: 0
+        gutter: 0,
       }
     },
+    computed: {
+      colClass () {
+        const { span, offset } = this
+        return [span && `col-${span}`, offset && `offset-${offset}`]
+      },
+      paddingSide () {
+        return this.gutter / 2 + 'px'
+      },
+      colStyle () {
+        return {
+          paddingLeft: this.paddingSide,
+          paddingRight: this.paddingSide
+        }
+      }
+      ,
+    }
   }
 </script>
 
@@ -41,8 +50,6 @@
   .col {
     height: 100px;
     width: 50%;
-    /*padding: 0 10px;*/
-    /*margin: 0 10px;*/
 
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {

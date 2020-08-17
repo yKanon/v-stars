@@ -29,13 +29,13 @@
         const { span, offset } = this
         return [span && `col-${span}`, offset && `offset-${offset}`]
       },
-      paddingSide () {
-        return this.gutter / 2 + 'px'
-      },
+      // paddingSide () {
+      //   return this.gutter / 2 + 'px'
+      // },
       colStyle () {
         return {
-          paddingLeft: this.paddingSide,
-          paddingRight: this.paddingSide
+          paddingLeft: this.gutter / 2 + 'px',
+          paddingRight: this.gutter / 2 + 'px'
         }
       }
       ,
@@ -49,7 +49,6 @@
 
   .col {
     height: 100px;
-    width: 50%;
 
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {

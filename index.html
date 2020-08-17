@@ -32,37 +32,36 @@
     .box {
       margin: 20px;
     }
-
   </style>
 </head>
 <body>
 <div id="app">
-  <div style="border: 1px solid pink">
-    <s-row gutter="20">
-      <s-col :span="12">1</s-col>
-      <s-col :span="12">2</s-col>
+    <div style="border: 1px solid pink">
+      <s-row gutter="20">
+        <s-col :span="12">1</s-col>
+        <s-col :span="12">2</s-col>
+      </s-row>
+
+      <s-row gutter="20">
+        <s-col span="3">1</s-col>
+        <s-col span="6">2</s-col>
+        <s-col span="15">2</s-col>
+      </s-row>
+
+    <s-row>
+      <s-col>1</s-col>
+      <s-col>2</s-col>
+      <s-col>2</s-col>
+      <s-col>2</s-col>
     </s-row>
-
-    <s-row gutter="20">
-      <s-col span="3">1</s-col>
-      <s-col span="6">2</s-col>
-      <s-col span="15">2</s-col>
-    </s-row>
-
-    <!--  <s-row>-->
-    <!--    <s-col>1</s-col>-->
-    <!--    <s-col>2</s-col>-->
-    <!--    <s-col>2</s-col>-->
-    <!--    <s-col>2</s-col>-->
-    <!--  </s-row>-->
-  </div>
+    </div>
 
 
-  <hr/>
-  <div class="box">
-    <s-input v-model="message"></s-input>
-    <p>{{message}}</p>
-  </div>
+  <!--  <hr/>-->
+  <!--  <div class="box">-->
+  <!--    <s-input v-model="message"></s-input>-->
+  <!--    <p>{{message}}</p>-->
+  <!--  </div>-->
   <!--  <div>-->
   <!--    <s-button-->
   <!--      :loading="loading"-->

@@ -37,26 +37,28 @@
 </head>
 <body>
 <div id="app">
-  <s-row>
-    <s-col :span="2">1</s-col>
-    <s-col :span="22">2</s-col>
-  </s-row>
+  <div style="border: 1px solid pink">
+    <s-row gutter="20">
+      <s-col :span="12">1</s-col>
+      <s-col :span="12">2</s-col>
+    </s-row>
 
-  <s-row>
-    <s-col>1</s-col>
-    <s-col>2</s-col>
-    <s-col>2</s-col>
-  </s-row>
+    <s-row gutter="20">
+      <s-col span="3">1</s-col>
+      <s-col span="6">2</s-col>
+      <s-col span="15">2</s-col>
+    </s-row>
 
-  <s-row>
-    <s-col>1</s-col>
-    <s-col>2</s-col>
-    <s-col>2</s-col>
-    <s-col>2</s-col>
-  </s-row>
-  
+    <!--  <s-row>-->
+    <!--    <s-col>1</s-col>-->
+    <!--    <s-col>2</s-col>-->
+    <!--    <s-col>2</s-col>-->
+    <!--    <s-col>2</s-col>-->
+    <!--  </s-row>-->
+  </div>
 
-  <hr />
+
+  <hr/>
   <div class="box">
     <s-input v-model="message"></s-input>
     <p>{{message}}</p>

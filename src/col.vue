@@ -32,10 +32,6 @@
       offset: {
         type: [Number, String]
       },
-      phone: {
-        type: Object,
-        validator
-      },
       ipad: {
         type: Object,
         validator
@@ -60,12 +56,11 @@
     },
     computed: {
       colClass () {
-        const { span, offset, phone, ipad, pc, narrowpc, widepc } = this
+        const { span, offset, ipad, pc, narrowpc, widepc } = this
 
         return [
           span && `col-${span}`,
           offset && `offset-${offset}`,
-          ...(phone && [`col-phone-${phone.span}`]),
           ...(ipad && [`col-ipad-${ipad.span}`]),
           ...(pc && [`col-pc-${pc.span}`]),
           ...(narrowpc && [`col-narrowpc-${narrowpc.span}`]),
@@ -84,7 +79,6 @@
 
 <style lang="scss" scoped>
   $class-prefix: col-;
-  $class-phone-prefix: col-phone-;
   $class-ipad-prefix: col-ipad-;
   $class-narrowpc-prefix: col-narrowpc-;
   $class-pc-prefix: col-pc-;
@@ -97,15 +91,6 @@
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;
-      }
-    }
-
-    /* phone */
-    @media screen and (max-width: 576px) {
-      @for $n from 1 through 24 {
-        &.#{$class-phone-prefix}#{$n} {
-          width: ($n / 24) * 100%;
-        }
       }
     }
 

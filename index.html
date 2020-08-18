@@ -29,80 +29,33 @@
       font-size: var(--font-size);
     }
   </style>
+  <style>
+    .demo {
+      background-color: #dddddd;
+      border: 1px solid #666666;
+      height: 100px;
+    }
+  </style>
 </head>
 <body>
 <div id="app">
-  <div style="border: 1px solid pink">
-    <s-row gutter="20">
-      <s-col
-        :ipad="{span: 8}"
-        :narrowpc="{span: 4}"
-        :pc="{span: 2}"
-        :widepc="{span: 1}"
-        span="24"
-      >
-        1
-      </s-col>
-      <s-col
-        :ipad="{span: 16}"
-        :narrowpc="{span: 20}"
-        :pc="{span: 22}"
-        :widepc="{span: 23}"
-        span="24"
-      >
-        12
-      </s-col>
-    </s-row>
-  </div>
+  <s-row>
+    <s-col :ipad="{span: 12}" :narrowpc="{span:8}" span="24">
+      <div class="demo"></div>
+    </s-col><s-col :ipad="{span: 12}" :narrowpc="{span:8}" span="24">
+      <div class="demo"></div>
+    </s-col><s-col :ipad="{span: 12}" :narrowpc="{span:8}" span="24">
+      <div class="demo"></div>
+    </s-col><s-col :ipad="{span: 12}" :narrowpc="{span:8}" span="24">
+      <div class="demo"></div>
+    </s-col><s-col :ipad="{span: 12}" :narrowpc="{span:8}" span="24">
+      <div class="demo"></div>
+    </s-col><s-col :ipad="{span: 12}" :narrowpc="{span:8}" span="24">
+      <div class="demo"></div>
+    </s-col>
+  </s-row>
 </div>
 
-
-<!--    <s-row gutter="20">-->
-<!--      <s-col span="3">1</s-col>-->
-<!--      <s-col span="6">2</s-col>-->
-<!--      <s-col span="15">2</s-col>-->
-<!--    </s-row>-->
-<!--    <s-row>-->
-<!--      <s-col>1</s-col>-->
-<!--      <s-col>2</s-col>-->
-<!--      <s-col>2</s-col>-->
-<!--      <s-col>2</s-col>-->
-<!--    </s-row>-->
-<!--  </div>-->
-
-
-<!--  <hr/>-->
-<!--  <div class="box">-->
-<!--    <s-input v-model="message"></s-input>-->
-<!--    <p>{{message}}</p>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <s-button-->
-<!--      :loading="loading"-->
-<!--      @click="loading = !loading"-->
-<!--    >-->
-<!--      按钮-->
-<!--    </s-button>-->
-<!--    <s-button-->
-<!--      :loading="loading1"-->
-<!--      @click="loading1 = !loading1"-->
-<!--      icon="setting"-->
-<!--    >按钮-->
-<!--    </s-button>-->
-<!--    <s-button-->
-<!--      :loading="loading2"-->
-<!--      @click="loading2 = !loading2"-->
-<!--      icon="setting"-->
-<!--      icon-position="right"-->
-<!--    >按钮-->
-<!--    </s-button>-->
-<!--    <s-button-group>-->
-<!--      <s-button icon="previous">上一页</s-button>-->
-<!--      <s-button>更多</s-button>-->
-<!--      <s-button icon="next" icon-position="right">下一页</s-button>-->
-<!--    </s-button-group>-->
-<!--  </div>-->
-<!--</div>-->
 <script src="./src/index.js"></script>
 </body>
 </html>

@@ -61,10 +61,10 @@
         return [
           span && `col-${span}`,
           offset && `offset-${offset}`,
-          ...(ipad && [`col-ipad-${ipad.span}`]),
-          ...(pc && [`col-pc-${pc.span}`]),
-          ...(narrowpc && [`col-narrowpc-${narrowpc.span}`]),
-          ...(widepc && [`col-widepc-${widepc.span}`]),
+          ...(ipad ? [`col-ipad-${ipad.span}`] : []),
+          ...(pc ? [`col-pc-${pc.span}`] : []),
+          ...(narrowpc ? [`col-narrowpc-${narrowpc.span}`] : []),
+          ...(widepc ? [`col-widepc-${widepc.span}`] : []),
         ]
       },
       colStyle () {
@@ -87,7 +87,6 @@
 
   .col {
     height: 100px;
-
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;
@@ -95,7 +94,7 @@
     }
 
     /* ipad */
-    @media screen and (min-width: 577px) and (max-width: 768px) {
+    @media screen and (min-width: 577px) {
       @for $n from 1 through 24 {
         &.#{$class-ipad-prefix}#{$n} {
           width: ($n / 24) * 100%;
@@ -104,7 +103,7 @@
     }
 
     /* narrow-pc */
-    @media screen and (min-width: 769px) and (max-width: 992px) {
+    @media screen and (min-width: 769px) {
       @for $n from 1 through 24 {
         &.#{$class-narrowpc-prefix}#{$n} {
           width: ($n / 24) * 100%;
@@ -113,7 +112,7 @@
     }
 
     /* pc */
-    @media screen and (min-width: 993px) and (max-width: 1199px) {
+    @media screen and (min-width: 993px) {
       @for $n from 1 through 24 {
         &.#{$class-pc-prefix}#{$n} {
           width: ($n / 24) * 100%;

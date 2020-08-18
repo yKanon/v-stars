@@ -56,15 +56,13 @@
     },
     computed: {
       colClass () {
-        const { span, offset, ipad, pc, narrowpc, widepc } = this
-
+        const { span, offset, ipad, pc, narrowpc, widepc, createClasses } = this
         return [
-          span && `col-${span}`,
-          offset && `offset-${offset}`,
-          ...(ipad ? [`col-ipad-${ipad.span}`] : []),
-          ...(pc ? [`col-pc-${pc.span}`] : []),
-          ...(narrowpc ? [`col-narrowpc-${narrowpc.span}`] : []),
-          ...(widepc ? [`col-widepc-${widepc.span}`] : []),
+          ...createClasses({ span, offset }),
+          ...createClasses(ipad, 'ipad-'),
+          ...createClasses(pc, 'pc-'),
+          ...createClasses(narrowpc, 'narrowpc-'),
+          ...createClasses(widepc, 'widepc-')
         ]
       },
       colStyle () {
@@ -73,7 +71,18 @@
           paddingRight: this.gutter / 2 + 'px'
         }
       }
-    }
+    },
+    methods: {
+      createClasses (obj, infix = '') {
+        if (!obj) return []
+
+        const { span, offset } = obj
+        let array = []
+        if (span) {array.push(`col-${infix}${span}`)}
+        if (offset) {array.push(`offset-${infix}${offset}`)}
+        return array
+      }
+    },
   }
 </script>
 
@@ -84,12 +93,20 @@
   $class-pc-prefix: col-pc-;
   $class-widepc-prefix: col-widepc-;
   $offset-prefix: offset-;
+  $offset-ipad-prefix: offset-ipad-;
+  $offset-narrowpc-prefix: offset-narrowpc-;
+  $offset-pc-prefix: offset-pc-;
+  $offset-widepc-prefix: offset-widepc-;
 
   .col {
     height: 100px;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;
+      }
+
+      &.#{$offset-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
       }
     }
 
@@ -98,6 +115,10 @@
       @for $n from 1 through 24 {
         &.#{$class-ipad-prefix}#{$n} {
           width: ($n / 24) * 100%;
+        }
+
+        &.#{$offset-ipad-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
         }
       }
     }
@@ -108,6 +129,10 @@
         &.#{$class-narrowpc-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
+
+        &.#{$offset-narrowpc-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
+        }
       }
     }
 
@@ -116,6 +141,10 @@
       @for $n from 1 through 24 {
         &.#{$class-pc-prefix}#{$n} {
           width: ($n / 24) * 100%;
+        }
+
+        &.#{$offset-pc-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
         }
       }
     }

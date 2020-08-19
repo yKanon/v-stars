@@ -1,13 +1,47 @@
 <template>
-  
+  <div
+    :class="layoutClasses"
+    class="layout"
+  >
+    <slot></slot>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'layout.vue'
+    name: 'StarsLayout',
+    data () {
+      return {
+        layoutClasses: {
+          hasSider: false
+        }
+      }
+    },
+    mounted () {
+      const {
+        $children,
+        layoutClasses,
+      } = this
+
+      $children.forEach(child => {
+        if (child.$options.name === 'StarsSider') {
+          layoutClasses.hasSider = true
+        }
+      })
+    }
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .layout {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    border: 2px solid red;
+    &.hasSider {
+      flex-direction: row;
+    }
+  }
+
 
 </style>

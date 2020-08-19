@@ -31,7 +31,6 @@ describe('Row', () => {
     })
 
     const el = vm.$el
-
     setTimeout(() => {
       const colElement = el.querySelector('.col')
       const rowElement = el.querySelector('.row')
@@ -43,7 +42,7 @@ describe('Row', () => {
 
       el.remove()
       vm.$destroy()
-    }, 1500)
+    }, 0)
   })
 
   it('接收 align 属性', function () {

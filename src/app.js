@@ -10,6 +10,8 @@ import Header from './header'
 import Sider from './sider'
 import Container from './container'
 import Footer from './footer'
+import Toast from './toast'
+import plugins from './plugins'
 
 Vue.component('s-button', Button)
 Vue.component('s-button-group', ButtonGroup)
@@ -22,6 +24,8 @@ Vue.component('s-header', Header)
 Vue.component('s-sider', Sider)
 Vue.component('s-container', Container)
 Vue.component('s-footer', Footer)
+Vue.component('s-toast', Toast)
+Vue.use(plugins)
 
 new Vue({
   el: '#app',
@@ -32,9 +36,11 @@ new Vue({
     loading2: false,
   },
   methods: {
-    inputChange(e) {
-      console.log(e.target.value)
+    showToast() {
+      this.$toast(`干得不错`)
     }
+  },
+  mounted() {
   }
 })
 

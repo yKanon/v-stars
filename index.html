@@ -24,43 +24,11 @@
     body {
       font-size: var(--font-size);
     }
-
-    .demo {
-      /*background-color: #dddddd;*/
-      min-height: 100px;
-      border: 1px solid #666666;
-    }
-
-    .sider {
-      background-color: #333333;
-    }
-
-    .sider.slide-enter,
-    .sider.slide-leave-to {
-      margin-left: -300px !important;
-    }
-
-    .header {
-      background-color: #999999;
-      height: 100px;
-    }
-
-    .footer {
-      background-color: #cccccc;
-      height: 50px;
-    }
   </style>
 </head>
 <body>
 <div id="app">
-  <s-layout style="height: 100vh">
-    <s-sider width="300px">sider</s-sider>
-    <s-layout>
-      <s-header>header</s-header>
-      <s-container>container</s-container>
-      <s-footer>footer</s-footer>
-    </s-layout>
-  </s-layout>
+  <button @click="showToast">按钮</button>
 </div>
 
 <script src="./src/app.js"></script>

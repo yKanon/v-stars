@@ -30,17 +30,35 @@ Vue.use(plugins)
 new Vue({
   el: '#app',
   data: {
-    message: "",
+    message: '',
     loading: false,
     loading1: false,
     loading2: false,
   },
   methods: {
-    showToast() {
+    showToast () {
       this.$toast(`干得不错`)
     }
   },
-  mounted() {
+  mounted () {
+    this.$toast(`我知道妇女`, {
+        closeButton: {
+          text: '关闭',
+          callback (toast) {
+            console.log(`请小心`)
+          }
+        },
+      }
+    )
+    // this.$toast(`fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,`, {
+    //     closeButton: {
+    //       text: '关闭',
+    //       callback (toast) {
+    //         console.log(`请小心`)
+    //       }
+    //     },
+    //   }
+    // )
   }
 })
 

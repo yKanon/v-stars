@@ -2,9 +2,9 @@ import Toast from './toast'
 
 export default {
   install(Vue, options) {
-    Vue.prototype.$toast = function (message) {
+    Vue.prototype.$toast = function (message, propsData) {
       let Constructor = Vue.extend(Toast)
-      const toast = new Constructor()
+      const toast = new Constructor({ propsData })
       toast.$slots.default = message
 
       toast.$mount()

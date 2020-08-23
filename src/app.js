@@ -45,6 +45,32 @@ new Vue({
             }
           },
           autoClose: false,
+          position: 'middle',
+        }
+      )
+    },
+    showToast1 () {
+      this.$toast(`我知道妇女`, {
+          closeButton: {
+            text: '关闭',
+            callback () {
+              console.log(`请小心`)
+            }
+          },
+          autoClose: false,
+          position: 'top',
+        }
+      )
+    },
+    showToast2 () {
+      this.$toast(`我知道妇女`, {
+          closeButton: {
+            text: '关闭',
+            callback () {
+              console.log(`请小心`)
+            }
+          },
+          autoClose: false,
           position: 'bottom',
         }
       )

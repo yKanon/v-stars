@@ -48,6 +48,8 @@ new Vue({
             console.log(`请小心`)
           }
         },
+        autoClose: false,
+        position: 'middle',
       }
     )
     // this.$toast(`fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,fjweifjoweoijfwe,`, {

@@ -15,7 +15,10 @@
         type: [Number, String]
       },
       align: {
-        type: String
+        type: String,
+        validator(value) {
+          return ['left', 'right', 'center'].indexOf(value) >= 0
+        }
       }
     },
     mounted () {

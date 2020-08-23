@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" ref="wrapper">
+  <div class="toast" ref="wrapper" :class="toastClasses">
     <div class="message">
       <slot v-if="!enableHtml"></slot>
       <div v-else v-html="$slots.default"></div>
@@ -20,6 +20,13 @@
   export default {
     name: 'StarsToast',
     props: {
+      position: {
+        type: String,
+        default: 'top',
+        validator(value) {
+          return ['top', 'bottom', 'middle'].indexOf(value) >= 0
+        }
+      },
       autoClose: {
         type: Boolean,
         default: true
@@ -45,6 +52,11 @@
     data () {
       return {
         timer: null
+      }
+    },
+    computed: {
+      toastClasses() {
+        return {[`position-${this.position}`]: true}
       }
     },
     methods: {
@@ -96,16 +108,13 @@
     display: flex;
     align-items: center;
     position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     background-color: $toast-background-color;
     border-radius: $toast-radius;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     color: #eeeeee;
     padding: 0 16px;
-
+    left: 50%;
     .message {
       padding: 8px 0;
     }
@@ -119,6 +128,17 @@
       border-left: 1px solid #666666;
     }
 
-
+    &.position-top {
+      top: 0;
+      transform: translateX(-50%);
+    }
+    &.position-bottom {
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+    &.position-middle {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 </style>

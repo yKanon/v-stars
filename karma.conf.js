@@ -53,6 +53,9 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    // 防止超时自动断开链接
+    browserNoActivityTimeout: 400000,
   })
 }

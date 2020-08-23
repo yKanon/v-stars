@@ -12,8 +12,8 @@
         ref="closeButton"
         v-if="closeButton.text"
       >
-      {{closeButton.text}}
-    </span>
+        {{closeButton.text}}
+      </span>
     </div>
   </div>
 </template>
@@ -30,12 +30,11 @@
         }
       },
       autoClose: {
-        type: Boolean,
-        default: true
-      },
-      autoCloseDelay: {
-        type: Number,
-        default: 500
+        type: [Boolean, Number],
+        default: 5,
+        validator (value) {
+          return value === false || typeof value === 'number'
+        }
       },
       closeButton: {
         type: Object,
@@ -69,20 +68,20 @@
         }
       },
       close () {
-        console.log(`close`)
         this.$el.remove()
         this.$emit('close')
         this.$destroy()
       },
       onAutoClose () {
         if (this.autoClose) {
-          this.timer = setTimeout(this.close, this.autoCloseDelay * 1000)
+          this.timer = setTimeout(this.close, this.autoClose * 1000)
         }
       },
       updateStyle () {
-        this.$nextTick(() => {
-          // console.log(this.$parent)
-          this.$refs.closeButton.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
+        let closeButtonElement = this.$refs.closeButton
+        let toastElement = this.$refs.toast
+        this.$nextTick(function() {
+          closeButtonElement.style.height = `${toastElement.getBoundingClientRect().height}px`
         })
       }
     },
@@ -97,7 +96,7 @@
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
   $font-size: 14px;
   $toast-min-height: 40px;
   $toast-background-color: rgba(0, 0, 0, 0.75);

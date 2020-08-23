@@ -44,7 +44,7 @@ new Vue({
               console.log(`请小心`)
             }
           },
-          autoClose: false,
+          autoClose: 3,
           position: 'middle',
         }
       )

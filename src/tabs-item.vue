@@ -1,15 +1,20 @@
 <template>
-  <div class="tabs-nav">
+  <div class="tabs-item">
     <slot></slot>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'StarsTabsNav'
-  }
+export default {
+  name: "StarsTabsItem",
+  props: {
+    type: Boolean,
+    default: false,
+  },
+};
 </script>
 
 <style scoped>
-  .tabs-nav {}
+.tabs-item {
+}
 </style>

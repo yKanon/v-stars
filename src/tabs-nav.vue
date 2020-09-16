@@ -1,15 +1,17 @@
 <template>
-  <div class="tabs">
+  <div class="tabs-nav">
     <slot></slot>
+    <slot name="action"></slot>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'StarsTabs'
-  }
+export default {
+  name: "StarsTabsNav",
+};
 </script>
 
 <style scoped>
-  .tabs {}
+.tabs-nav {
+}
 </style>

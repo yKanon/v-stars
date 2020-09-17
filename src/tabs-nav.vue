@@ -37,7 +37,7 @@
     justify-content: flex-start;
     height: $tab-height;
     position: relative;
-
+    border-bottom: 1px solid #eeeeee;
     > .line {
       position: absolute;
       bottom: 0;
@@ -47,6 +47,10 @@
 
     > .action-wrapper {
       margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1em;
     }
   }
 </style>

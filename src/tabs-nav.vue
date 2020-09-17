@@ -10,10 +10,6 @@
 <script>
 export default {
   name: "StarsTabsNav",
-  inject: ["eventBus"],
-  created() {
-    console.log(`eventBus`, this.eventBus);
-  },
 };
 </script>
 

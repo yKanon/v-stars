@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 export default {
   name: "StarsTabs",
   props: {
@@ -16,12 +18,22 @@ export default {
       type: String,
       default: "horizontal",
       validator(value) {
-        return ["horizontal", "vertical"].indexOf(value) > 0;
+        return ["horizontal", "vertical"].indexOf(value) > -1;
       },
     },
   },
-  created() {
-    // this.$emit("update:selected", "xxx");
+  data() {
+    return {
+      eventBus: new Vue(),
+    };
+  },
+  provide() {
+    return {
+      eventBus: this.eventBus,
+    };
+  },
+  mounted() {
+    this.eventBus.$emit("update:selected", this.selected);
   },
 };
 </script>

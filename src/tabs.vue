@@ -33,7 +33,18 @@ export default {
     };
   },
   mounted() {
-    this.eventBus.$emit("update:selected", this.selected);
+    this.$children.forEach((outer) => {
+      if (outer.$options.name === "StarsTabsNav") {
+        outer.$children.forEach((item) => {
+          if (
+            item.$options.name === "StarsTabsItem" &&
+            item.name === this.selected
+          ) {
+            this.eventBus.$emit("update:selected", this.selected, item);
+          }
+        });
+      }
+    });
   },
 };
 </script>

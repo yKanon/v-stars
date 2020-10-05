@@ -13,16 +13,28 @@
     data () {
       return {
         visible: false,
-        random: 0,
       }
-    },
-    mounted () {
-      this.random = parseInt(Math.random() * 10)
     },
     methods: {
       handleClick () {
-        console.log(this.random)
         this.visible = !this.visible
+        console.log('visible', this.visible)
+
+        if (this.visible) {
+          const timer = setTimeout(() => {
+            const listener = () => {
+              console.log('监听器内部')
+              this.visible = false
+              console.log('visible', this.visible)
+              document.removeEventListener('click', listener)
+              clearTimeout(timer)
+            }
+
+            document.addEventListener('click', listener)
+          })
+        } else  {
+          console.log('vm 隐藏 popover')
+        }
       }
     }
   }
@@ -33,6 +45,7 @@
     display: inline-block;
     vertical-align: top;
     position: relative;
+
     .content-wrapper {
       position: absolute;
       left: 0;

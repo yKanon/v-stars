@@ -1,6 +1,11 @@
 <template>
   <div @click.stop="handleClick" class="popover">
-    <div class="content-wrapper" v-if="visible" @click.stop>
+    <div
+      ref="contentWrapper"
+      class="content-wrapper"
+      v-if="visible"
+      @click.stop
+    >
       <slot name="content"></slot>
     </div>
     <slot></slot>
@@ -18,24 +23,23 @@ export default {
   methods: {
     handleClick() {
       this.visible = !this.visible;
-      console.log('visible', this.visible);
 
       if (this.visible) {
         this.$nextTick(() => {
+          const contentWrapper = this.$refs.contentWrapper;
+          document.body.appendChild(contentWrapper);
+
           const listener = () => {
-            console.log('监听器内部');
             this.visible = false;
-            console.log('visible', this.visible);
             document.removeEventListener('click', listener);
           };
 
           document.addEventListener('click', listener);
         });
-      } else {
-        console.log('vm 隐藏 popover');
       }
     },
   },
+  mounted() {},
 };
 </script>
 

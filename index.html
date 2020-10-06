@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-  <title>some wheels~~</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>some wheels~~</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    :root {
-      --button-height: 32px;
-      --font-size: 14px;
-      --button-bg: #ffffff;
-      --button-active-bg: #eeeeee;
-      --color: #333;
-      --border-color: #999;
-      --border-color-hover: #666;
-      --border-radius: 4px;
-    }
+      :root {
+        --button-height: 32px;
+        --font-size: 14px;
+        --button-bg: #ffffff;
+        --button-active-bg: #eeeeee;
+        --color: #333;
+        --border-color: #999;
+        --border-color-hover: #666;
+        --border-radius: 4px;
+      }
 
-    body {
-      font-size: var(--font-size);
-    }
-  </style>
-</head>
-<body>
-<div id="app" style="padding-top: 20%; padding-left: 20%">
-  <s-popover>
-    <template slot="content">
-      <div>popover的内容</div>
-    </template>
-    <button>点击</button>
-  </s-popover>
-  <s-popover>
-    <template slot="content">
-      <div>popover的内容</div>
-    </template>
-    <button>点击</button>
-  </s-popover>
-</div>
+      body {
+        font-size: var(--font-size);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="padding-top: 20%; padding-left: 20%">
+      <div
+        style="overflow: hidden; border: 1px solid blueviolet; padding: 5px;"
+      >
+        <s-popover>
+          <template slot="content">
+            <div>popover的内容</div>
+          </template>
+          <button>点击</button>
+        </s-popover>
+        <s-popover>
+          <template slot="content">
+            <div>popover的内容</div>
+          </template>
+          <button>点击</button>
+        </s-popover>
+      </div>
+    </div>
 
-<script src="./src/app.js"></script>
-</body>
+    <script src="./src/app.js"></script>
+  </body>
 </html>

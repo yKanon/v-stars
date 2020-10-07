@@ -1,6 +1,6 @@
 <template>
-  <div @click.stop="handleClick" class="popover">
-    <div ref="contentWrapper" class="content-wrapper" v-if="visible">
+  <div class="popover" @click="onClick" ref="popover">
+    <div ref="contentWrapper" class="content-wrapper" v-show="visible">
       <slot name="content"></slot>
     </div>
     <span ref="triggerWrapper">
@@ -13,52 +13,71 @@
 export default {
   name: 'StarsPopover',
   data() {
-    return {
-      visible: false,
-    };
+    return { visible: false, timer: null };
+  },
+  mounted() {
+    console.log('popover', this.$refs.popover);
   },
   methods: {
-    handleClick() {
+    toggleVisible() {
       this.visible = !this.visible;
-
-      if (this.visible) {
-        this.$nextTick(() => {
-          const contentWrapper = this.$refs.contentWrapper;
-          const triggerWrapper = this.$refs.triggerWrapper;
-
-          let {
-            width,
-            height,
-            top,
-            left,
-          } = triggerWrapper.getBoundingClientRect();
-
-          document.body.appendChild(contentWrapper);
-
-          contentWrapper.style.left = left + window.scrollX + 'px';
-          contentWrapper.style.top = top + window.scrollY + 'px';
-
-          const listener = () => {
-            this.visible = false;
-            document.removeEventListener('click', listener);
-          };
-
-          document.addEventListener('click', listener);
-        });
+    },
+    close() {
+      this.visible = false;
+      document.removeEventListener('click', this.onClickDocument);
+      this.timer = 0;
+      clearTimeout(this.timer);
+    },
+    open() {
+      this.visible = true;
+      this.positionPopper();
+      this.timer = setTimeout(() => {
+        document.addEventListener('click', this.onClickDocument);
+      });
+    },
+    onClick(ev) {
+      if (this.$refs.triggerWrapper.contains(ev.target)) {
+        if (this.visible) {
+          this.close();
+        } else {
+          this.open();
+        }
       }
     },
+    // 定位 popper
+    positionPopper() {
+      document.body.appendChild(this.$refs.contentWrapper);
+
+      let {
+        width,
+        height,
+        top,
+        left,
+      } = this.$refs.triggerWrapper.getBoundingClientRect();
+
+      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
+      this.$refs.contentWrapper.style.top = top + window.scrollY + 'px';
+    },
+    onClickDocument(e) {
+      // 点击区域在 popper 中时，不关闭 popper
+      let flag =
+        this.$refs.popover &&
+        (this.$refs.contentWrapper.contains(e.target) ||
+          this.$refs.contentWrapper === e.target);
+
+      if (flag) return;
+      this.close();
+    },
   },
-  mounted() {},
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .popover {
   display: inline-block;
   vertical-align: top;
   position: relative;
 }
-
 .content-wrapper {
   position: absolute;
   border: 1px solid red;

@@ -1,6 +1,11 @@
 <template>
   <div class="popover" @click="onClick" ref="popover">
-    <div ref="contentWrapper" class="content-wrapper" v-show="visible">
+    <div
+      ref="contentWrapper"
+      class="content-wrapper"
+      v-show="visible"
+      :class="{ [`position-${position}`]: true }"
+    >
       <slot name="content"></slot>
     </div>
     <span ref="triggerWrapper" style="display: inline-block">
@@ -15,6 +20,15 @@ export default {
   data() {
     return { visible: false, timer: null };
   },
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator(value) {
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) > -1;
+      },
+    },
+  },
   methods: {
     toggleVisible() {
       this.visible = !this.visible;
@@ -27,7 +41,8 @@ export default {
     },
     open() {
       this.visible = true;
-      this.positionPopper();
+      this.$nextTick(this.positionPopper);
+      // this.positionPopper();
       this.timer = setTimeout(() => {
         document.addEventListener('click', this.onClickDocument);
       });
@@ -43,17 +58,35 @@ export default {
     },
     // 定位 popper
     positionPopper() {
-      document.body.appendChild(this.$refs.contentWrapper);
+      const position = this.position;
+      let { contentWrapper, triggerWrapper } = this.$refs;
+      document.body.appendChild(contentWrapper);
 
-      let {
-        width,
-        height,
-        top,
-        left,
-      } = this.$refs.triggerWrapper.getBoundingClientRect();
+      let { height: heightPopover } = contentWrapper.getBoundingClientRect();
+      let { width, height, top, left } = triggerWrapper.getBoundingClientRect();
 
-      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-      this.$refs.contentWrapper.style.top = top + window.scrollY + 'px';
+      switch (position) {
+        case 'top':
+          contentWrapper.style.left = left + window.scrollX + 'px';
+          contentWrapper.style.top = top + window.scrollY + 'px';
+          break;
+        case 'bottom':
+          contentWrapper.style.left = left + window.scrollX + 'px';
+          contentWrapper.style.top = height + top + window.scrollY + 'px';
+          break;
+        case 'left':
+          contentWrapper.style.left = left + window.scrollX + 'px';
+          contentWrapper.style.top =
+            top + window.scrollY + (height - heightPopover) / 2 + 'px';
+          break;
+        case 'right':
+          contentWrapper.style.left = left + width + window.scrollX + 'px';
+          contentWrapper.style.top =
+            top + window.scrollY + (height - heightPopover) / 2 + 'px';
+          break;
+        default:
+          break;
+      }
     },
     onClickDocument(e) {
       // 点击区域在 popper 中时，不关闭 popper
@@ -83,8 +116,6 @@ $border-radius: 4px;
   border-radius: $border-radius;
   background: white;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
-  transform: translateY(-100%);
-  margin-top: -10px;
   padding: 0.5em 1em;
   max-width: 20em;
   word-wrap: break-word;
@@ -94,15 +125,70 @@ $border-radius: 4px;
     display: block;
     border: 8px solid transparent;
     position: absolute;
-    left: 10px;
   }
-  ::before {
-    top: 100%;
-    border-top-color: black;
+  &.position-top {
+    transform: translateY(-100%);
+    margin-top: -10px;
+    ::before,
+    ::after {
+      left: 10px;
+    }
+    ::before {
+      top: 100%;
+      border-top-color: black;
+    }
+    ::after {
+      border-top-color: white;
+      top: calc(100% - 1px);
+    }
   }
-  ::after {
-    border-top-color: white;
-    top: calc(100% - 1px);
+  &.position-bottom {
+    margin-top: 10px;
+    ::before,
+    ::after {
+      left: 10px;
+    }
+    ::before {
+      border-bottom-color: black;
+      bottom: 100%;
+    }
+    ::after {
+      border-bottom-color: white;
+      bottom: calc(100% - 1px);
+    }
+  }
+  &.position-left {
+    transform: translateX(-100%);
+    margin-left: -10px;
+    ::before,
+    ::after {
+      transform: translateY(-50%);
+      top: 50%;
+    }
+    ::before {
+      border-left-color: black;
+      left: 100%;
+    }
+    ::after {
+      border-left-color: white;
+      left: calc(100% - 1px);
+    }
+  }
+  &.position-right {
+    margin-left: 10px;
+    ::before,
+    ::after {
+      transform: translateY(-50%);
+      top: 50%;
+    }
+    ::before {
+      border-right-color: black;
+      right: 100%;
+    }
+    ::after {
+      border-right-color: white;
+      right: calc(100% - 1px);
+    }
   }
 }
 </style>

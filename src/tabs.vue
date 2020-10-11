@@ -5,40 +5,42 @@
 </template>
 
 <script>
-  import Vue from 'vue'
+import Vue from 'vue';
 
-  export default {
-    name: 'StarsTabs',
-    props: {
-      selected: {
-        type: String,
-        require: true,
+export default {
+  name: 'StarsTabs',
+  props: {
+    selected: {
+      type: String,
+      require: true,
+    },
+    direction: {
+      type: String,
+      default: 'horizontal',
+      validator(value) {
+        return ['horizontal', 'vertical'].indexOf(value) > -1;
       },
-      direction: {
-        type: String,
-        default: 'horizontal',
-        validator (value) {
-          return ['horizontal', 'vertical'].indexOf(value) > -1
-        },
-      },
     },
-    data () {
-      return {
-        eventBus: new Vue(),
-      }
-    },
-    provide () {
-      return {
-        eventBus: this.eventBus,
-      }
-    },
-    mounted () {
+  },
+  data() {
+    return {
+      eventBus: new Vue(),
+    };
+  },
+  provide() {
+    return {
+      eventBus: this.eventBus,
+    };
+  },
+  methods: {
+    checkChildren() {
       if (this.$children.length === 0) {
         throw new Error(`
         tabs组件接收 tabs-nav 或者 tabs-content 子组件。请检查你的模板。
-       `)
+       `);
       }
-
+    },
+    selectTab() {
       this.$children.forEach((outer) => {
         if (outer.$options.name === 'StarsTabsNav') {
           outer.$children.forEach((item) => {
@@ -46,16 +48,21 @@
               item.$options.name === 'StarsTabsItem' &&
               item.name === this.selected
             ) {
-              this.eventBus.$emit('update:selected', this.selected, item)
+              this.eventBus.$emit('update:selected', this.selected, item);
             }
-          })
+          });
         }
-      })
+      });
     },
-  }
+  },
+  mounted() {
+    this.checkChildren();
+    this.selectTab();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .tabs {
-  }
+.tabs {
+}
 </style>

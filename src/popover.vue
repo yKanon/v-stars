@@ -15,9 +15,6 @@ export default {
   data() {
     return { visible: false, timer: null };
   },
-  mounted() {
-    console.log('popover', this.$refs.popover);
-  },
   methods: {
     toggleVisible() {
       this.visible = !this.visible;

@@ -42,7 +42,6 @@ export default {
     open() {
       this.visible = true;
       this.$nextTick(this.positionPopper);
-      // this.positionPopper();
       this.timer = setTimeout(() => {
         document.addEventListener('click', this.onClickDocument);
       });
@@ -58,35 +57,33 @@ export default {
     },
     // 定位 popper
     positionPopper() {
-      const position = this.position;
       let { contentWrapper, triggerWrapper } = this.$refs;
       document.body.appendChild(contentWrapper);
-
+      const position = this.position;
       let { height: heightPopover } = contentWrapper.getBoundingClientRect();
       let { width, height, top, left } = triggerWrapper.getBoundingClientRect();
 
-      switch (position) {
-        case 'top':
-          contentWrapper.style.left = left + window.scrollX + 'px';
-          contentWrapper.style.top = top + window.scrollY + 'px';
-          break;
-        case 'bottom':
-          contentWrapper.style.left = left + window.scrollX + 'px';
-          contentWrapper.style.top = height + top + window.scrollY + 'px';
-          break;
-        case 'left':
-          contentWrapper.style.left = left + window.scrollX + 'px';
-          contentWrapper.style.top =
-            top + window.scrollY + (height - heightPopover) / 2 + 'px';
-          break;
-        case 'right':
-          contentWrapper.style.left = left + width + window.scrollX + 'px';
-          contentWrapper.style.top =
-            top + window.scrollY + (height - heightPopover) / 2 + 'px';
-          break;
-        default:
-          break;
-      }
+      const options = {
+        top: {
+          left: left + window.scrollX,
+          top: top + window.scrollY,
+        },
+        bottom: {
+          left: left + window.scrollX,
+          top: height + top + window.scrollY,
+        },
+        left: {
+          left: left + window.scrollX,
+          top: top + window.scrollY + (height - heightPopover) / 2,
+        },
+        right: {
+          left: left + width + window.scrollX,
+          top: top + window.scrollY + (height - heightPopover) / 2,
+        },
+      };
+
+      contentWrapper.style.left = options[position].left + 'px';
+      contentWrapper.style.top = options[position].top + 'px';
     },
     onClickDocument(e) {
       // 点击区域在 popper 中时，不关闭 popper

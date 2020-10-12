@@ -1,4 +1,6 @@
 import Vue from "vue";
+// import log from '../utils/log'
+
 import Button from "./button.vue";
 import Icon from "./icon.vue";
 import ButtonGroup from "./button-group";
@@ -46,11 +48,11 @@ new Vue({
     selectedTab: "second",
   },
   methods: {
-    showToast() {
+    showToast () {
       this.$toast(`我知道妇女`, {
         closeButton: {
           text: "关闭",
-          callback() {
+          callback () {
             console.log(`请小心`);
           },
         },
@@ -58,11 +60,11 @@ new Vue({
         position: "middle",
       });
     },
-    showToast1() {
+    showToast1 () {
       this.$toast(`我知道妇女`, {
         closeButton: {
           text: "关闭",
-          callback() {
+          callback () {
             console.log(`请小心`);
           },
         },
@@ -70,11 +72,11 @@ new Vue({
         position: "top",
       });
     },
-    showToast2() {
+    showToast2 () {
       this.$toast(`我知道妇女`, {
         closeButton: {
           text: "关闭",
-          callback() {
+          callback () {
             console.log(`请小心`);
           },
         },
@@ -83,5 +85,5 @@ new Vue({
       });
     },
   },
-  mounted() {},
+  mounted () { },
 });

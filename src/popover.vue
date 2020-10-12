@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="onClick" ref="popover">
+  <div class="popover" ref="popover">
     <div
       ref="contentWrapper"
       class="content-wrapper"
@@ -21,12 +21,35 @@ export default {
     return { visible: false, timer: null };
   },
   props: {
+    trigger: {
+      type: String,
+      default: 'click',
+      validator(val) {
+        return ['click', 'hover'].indexOf(val) > -1;
+      },
+    },
     position: {
       type: String,
       default: 'top',
       validator(value) {
         return ['top', 'bottom', 'left', 'right'].indexOf(value) > -1;
       },
+    },
+  },
+  computed: {
+    openEvent() {
+      if (this.trigger === 'click') {
+        return 'click';
+      } else {
+        return 'mouseenter';
+      }
+    },
+    closeEvent() {
+      if (this.trigger === 'click') {
+        return 'click';
+      } else {
+        return 'mouseleave';
+      }
     },
   },
   methods: {
@@ -95,6 +118,24 @@ export default {
       if (flag) return;
       this.close();
     },
+  },
+  mounted() {
+    const { popover } = this.$refs;
+    if (this.trigger === 'click') {
+      popover.addEventListener('click', this.onClick);
+    } else {
+      popover.addEventListener(this.openEvent, this.open);
+      popover.addEventListener(this.closeEvent, this.close);
+    }
+  },
+  beforeDestroy() {
+    const { popover } = this.$refs;
+    if (this.trigger === 'click') {
+      popover.removeEventListener('click', this.onClick);
+    } else {
+      popover.removeEventListener(this.openEvent, this.open);
+      popover.removeEventListener(this.closeEvent, this.close);
+    }
   },
 };
 </script>

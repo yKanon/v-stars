@@ -9,18 +9,27 @@
 
   export default {
     name: 'StarsCollapse',
-    provide() {
-      if (this.accordion) {
-        return {
-          eventBus: new Vue()
-        }
+    provide () {
+      return {
+        eventBus: this.eventBus
       }
     },
     props: {
       accordion: {
         type: Boolean,
         default: false
+      },
+      value: {
+        type: String
       }
+    },
+    data() {
+      return {
+        eventBus: new Vue()
+      }
+    },
+    mounted () {
+      this.eventBus.$emit(`update:selected`, this.value)
     }
   }
 </script>

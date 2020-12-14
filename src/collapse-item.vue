@@ -15,8 +15,9 @@
         type: String,
         required: true
       },
-      name: {},
-      disabled: {}
+      name: {
+        type: String
+      }
     },
     inject: ['eventBus'],
     data () {
@@ -35,15 +36,16 @@
         if (this.isOpen) {
           this.close()
         } else {
-          this.open()
-          this?.eventBus?.$emit('update:selected', this)
+          this?.eventBus?.$emit('update:selected', this.name)
         }
       }
     },
     mounted () {
-      this?.eventBus?.$on('update:selected', (vm) => {
-        if (vm !== this) {
+      this?.eventBus?.$on('update:selected', (name) => {
+        if (name !== this.name) {
           this.close()
+        } else {
+          this.open()
         }
       })
     }
@@ -72,12 +74,13 @@
       }
     }
 
-    &:last-child {
+    /*&:last-child {
       > .title {
         border-bottom-left-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
+        margin-bottom: -1px;
       }
-    }
+    }*/
 
     > .content {
       padding: .5em;

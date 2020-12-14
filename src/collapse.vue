@@ -5,8 +5,23 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+
   export default {
-    name: 'StarsCollapse'
+    name: 'StarsCollapse',
+    provide() {
+      if (this.accordion) {
+        return {
+          eventBus: new Vue()
+        }
+      }
+    },
+    props: {
+      accordion: {
+        type: Boolean,
+        default: false
+      }
+    }
   }
 </script>
 

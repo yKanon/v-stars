@@ -1,7 +1,7 @@
 <template>
   <div class="collapse-item">
-    <div @click="open=!open" class="title">{{title}}</div>
-    <div class="content" v-show="open">
+    <div @click="toggle" class="title">{{title}}</div>
+    <div class="content" v-show="isOpen">
       <slot></slot>
     </div>
   </div>
@@ -18,10 +18,34 @@
       name: {},
       disabled: {}
     },
+    inject: ['eventBus'],
     data () {
       return {
-        open: false
+        isOpen: false
       }
+    },
+    methods: {
+      close () {
+        this.isOpen = false
+      },
+      open () {
+        this.isOpen = true
+      },
+      toggle () {
+        if (this.isOpen) {
+          this.close()
+        } else {
+          this.open()
+          this?.eventBus?.$emit('update:selected', this)
+        }
+      }
+    },
+    mounted () {
+      this?.eventBus?.$on('update:selected', (vm) => {
+        if (vm !== this) {
+          this.close()
+        }
+      })
     }
   }
 </script>
@@ -49,7 +73,7 @@
     }
 
     &:last-child {
-      > .title:last-child {
+      > .title {
         border-bottom-left-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
       }

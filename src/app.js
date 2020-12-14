@@ -48,8 +48,7 @@ Vue.use(plugins);
 new Vue({
   el: "#app",
   data: {
-    message: "",
-    selectedTab: "second",
+    value: "2"
   },
   methods: {
     showToast () {

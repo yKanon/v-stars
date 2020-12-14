@@ -36,7 +36,7 @@
         if (this.isOpen) {
           this.close()
         } else {
-          this?.eventBus?.$emit('update:selected', this.name)
+          this?.eventBus.$emit('update:selected', this.name)
         }
       }
     },

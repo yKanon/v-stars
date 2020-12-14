@@ -23,13 +23,16 @@
         type: String
       }
     },
-    data() {
+    data () {
       return {
         eventBus: new Vue()
       }
     },
     mounted () {
       this.eventBus.$emit(`update:selected`, this.value)
+      this.eventBus.$on(`update:selected`, (name) => {
+        this.$emit(`update:value`, name)
+      })
     }
   }
 </script>
